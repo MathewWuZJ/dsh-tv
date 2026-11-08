@@ -2,6 +2,8 @@
 
 **English** | [中文](README.zh.md)
 
+> **Mirror:** if `github.com` web pages are slow or blocked (504) in your network, read this README via jsDelivr: <https://cdn.jsdelivr.net/gh/MathewWuZJ/dsh-tv@main/README.md>. Git-based installs are unaffected.
+
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) plugin that opens a **short-video / TV panel in the right sidebar**, so you can watch something while an agent works. On Desktop it embeds a real Electron `<webview>` (real browser engine), not an iframe.
 
 > Not affiliated with DeepSeek, Douyin, YouTube, Bilibili, Instagram or any listed site. Site names and icons belong to their owners.
@@ -52,7 +54,7 @@ cd dsh-tv
 DSH has no central third-party marketplace; third parties publish packages and **custom plugin indexes**. This repo ships `market-index.json` (format 1). In DSH enable **Plugins → Discover → Custom plugin indexes**, add:
 
 ```
-https://raw.githubusercontent.com/MathewWuZJ/dsh-tv/main/market-index.json
+https://cdn.jsdelivr.net/gh/MathewWuZJ/dsh-tv@main/market-index.json
 ```
 
 then install from the Discover tab.

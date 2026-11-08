@@ -2,6 +2,8 @@
 
 [English](README.md) | **中文**
 
+> **镜像：** 如果你的网络访问 `github.com` 网页很慢或报 504，可用 jsDelivr 在线阅读：<https://cdn.jsdelivr.net/gh/MathewWuZJ/dsh-tv@main/README.zh.md>。用 `git` 安装不受影响。
+
 一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）插件：在**右侧边栏**打开一个**短视频 / 电视面板**，让 Agent 干活时你可以在旁边刷视频。桌面版用真正的 Electron `<webview>`（真实浏览器内核）加载，不是 iframe。
 
 > 与 DeepSeek、抖音、YouTube、Bilibili、Instagram 等无隶属关系；站点名称与图标归各自权利人所有。
@@ -52,7 +54,7 @@ cd dsh-tv
 DSH 没有官方第三方市场，第三方通过**自定义插件索引**分发。本仓库内置 `market-index.json`（format 1）。在 DSH 里启用 **Plugins → Discover → Custom plugin indexes**，添加：
 
 ```
-https://raw.githubusercontent.com/MathewWuZJ/dsh-tv/main/market-index.json
+https://cdn.jsdelivr.net/gh/MathewWuZJ/dsh-tv@main/market-index.json
 ```
 
 然后在 Discover 里安装。
