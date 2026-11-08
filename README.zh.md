@@ -37,20 +37,16 @@
 ### 1）从 GitHub 安装（推荐）
 
 ```sh
-dsh plugin --profile desktop add github:MathewWuZJ/dsh-tv
-```
-
-如果你的 pnpm 不接受 `github:` 简写，等价的完整 Git 地址可用：
-
-```sh
 dsh plugin --profile desktop add git+https://github.com/MathewWuZJ/dsh-tv.git
 ```
+
+用 `dsh web`（Web profile）时把 `desktop` 换成 `web`。若你的 pnpm 支持 GitHub 简写，也可以写成 `github:MathewWuZJ/dsh-tv`。
 
 安装后会自动启用该 bundle。完全退出并重启 DeepSeek Harness，对话头部右上角就会出现 `DSH-TV` 按钮；若没出现，到 **Plugins → Installed** 确认 `dsh-tv` 已启用。
 
 ### 2）作为插件市场索引安装
 
-DSH 没有官方第三方市场，第三方通过**自定义插件索引**分发。本仓库内置 `market-index.json`（format 1）。在 DSH 里启用 **Plugins → Discover → Custom plugin indexes**，添加：
+DSH 没有官方第三方市场，第三方通过**自定义插件索引**分发。本仓库内置 `market-index.json`（format 1）。先在 **Plugins → Experimental plugins** 里打开实验开关 **Custom plugin indexes**，再到 **Discover → 管理索引源** 添加：
 
 ```
 https://cdn.jsdelivr.net/gh/MathewWuZJ/dsh-tv@main/market-index.json
@@ -93,7 +89,7 @@ A：不能。内嵌浏览器是隔离会话，读不到 Chrome 的 Cookie。请�
 A：公开 IPTV 播放列表（主要是 iptv-org 与社区列表）。频道由社区维护，部分会失效或被地区限制；播放器会先校验再返回，失败自动换台。本项目不托管任何流。
 
 **Q：有没有官方插件市场？**
-A：第三方插件没有官方市场。分发方式为：npm 包（`dsh plugin add <包名>`）、GitHub 安装（`github:owner/repo`）、或 Discover 里添加**自定义索引 JSON**。官方 bundle 由 DSH 自身随版本提供。
+A：第三方插件没有官方市场。对本插件可用的安装路径就是上面两条：`dsh plugin add` 从 GitHub 安装，或在 Discover 里添加我们的 `market-index.json` 自定义索引。**目前没有发布 npm 包** —— npm 上的 `dsh-tv` 名称属于别人的无关包，请勿执行 `dsh plugin add dsh-tv`。官方 bundle 由 DSH 自身随版本提供。
 
 **Q：会上传我的数据吗？**
 A：不会。插件只加载你打开的站点和全球频道播放列表；会话快照（用于尽力恢复登录）写到 `~/.dsh/social-session/`，播放列表也缓存在此。不会上传给作者。
@@ -114,11 +110,8 @@ dsh-tv/
 ├── lib/client.js       # client 半：右侧栏 tab 类型、UI、设置、各站 webview
 ├── assets/icons/       # 内置的真实站点图标
 ├── assets/hls.min.js   # 全球频道用的 HLS 播放库
-├── assets/readme/      # 截图
-└── install.sh          # 仅开发用的同步脚本，不是安装方式
+└── assets/readme/      # 截图
 ```
-
-`install.sh` 是给**贡献者改代码时**用的开发脚本：它把本地仓库直接拷进某个 profile 的 `node_modules`，并手改该 profile 的 `package.json` bundles，绕过了 DSH 插件管理器。普通用户不要用它 —— 请用 `dsh plugin add` 或 Discover 安装。
 
 - Host 跑在 DSH Host 进程；全球频道播放器监听独立 loopback 端口，供 guest webview 加载。
 - Client bundle 是纯 `window.__ModuleLoader__.load({...})`，只依赖基线模块（`react`）。

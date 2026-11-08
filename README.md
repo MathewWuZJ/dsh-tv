@@ -37,20 +37,16 @@ A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) plug
 ### 1) From GitHub (recommended)
 
 ```sh
-dsh plugin --profile desktop add github:MathewWuZJ/dsh-tv
-```
-
-If your pnpm does not accept the `github:` shorthand, the equivalent Git URL works:
-
-```sh
 dsh plugin --profile desktop add git+https://github.com/MathewWuZJ/dsh-tv.git
 ```
+
+Use `--profile web` instead if you run `dsh web` (the Web profile). The shorter `github:MathewWuZJ/dsh-tv` also works on setups whose pnpm accepts GitHub shorthands.
 
 Installation enables the bundle automatically. Fully quit and relaunch DeepSeek Harness, and the `DSH-TV` button appears in the chat header (top-right). If it does not, open **Plugins → Installed** and check that `dsh-tv` is enabled.
 
 ### 2) As a plugin-market index entry
 
-DSH has no central third-party marketplace; third parties publish packages and **custom plugin indexes**. This repo ships `market-index.json` (format 1). In DSH enable **Plugins → Discover → Custom plugin indexes**, add:
+DSH has no central third-party marketplace; third parties publish packages and **custom plugin indexes**. This repo ships `market-index.json` (format 1). Switch on the experimental **Custom plugin indexes** bundle (Plugins → Experimental plugins), then open **Discover → Manage index sources…** and add:
 
 ```
 https://cdn.jsdelivr.net/gh/MathewWuZJ/dsh-tv@main/market-index.json
@@ -93,7 +89,7 @@ A: No. The embedded browser is an isolated session and is not allowed to read Ch
 A: Public IPTV playlists (mostly iptv-org and community lists). Streams are community-maintained; some are offline or geo-blocked. The player validates a channel before returning it and auto-switches on failure. No streams are hosted by this project.
 
 **Q: Is there an official plugin marketplace?**
-A: Not for third-party plugins. Distribution is: npm package (`dsh plugin add <pkg>`), GitHub install (`github:owner/repo`), or a custom market index JSON added in Discover. Official bundles are shipped by DSH itself.
+A: Not for third-party plugins. For dsh-tv the available install paths are exactly the two above: a GitHub install with `dsh plugin add`, or adding our `market-index.json` in Discover. **No npm package is published** — the npm name `dsh-tv` belongs to an unrelated package, so do not run `dsh plugin add dsh-tv`. Official bundles are shipped by DSH itself.
 
 **Q: Is my data sent anywhere?**
 A: The plugin only loads the sites you open and the global TV playlists. Session snapshots (for best-effort login resume) are written under `~/.dsh/social-session/`; the TV playlist is cached there too. Nothing is sent to the author.
@@ -114,11 +110,8 @@ dsh-tv/
 ├── lib/client.js      # client half: right-sidebar tab type, UI, settings, per-site webviews
 ├── assets/icons/       # bundled real site favicons
 ├── assets/hls.min.js   # bundled HLS player for Global TV
-├── assets/readme/      # README screenshots
-└── install.sh          # development-only sync helper, NOT an install method
+└── assets/readme/      # README screenshots
 ```
-
-`install.sh` is a **development helper** for contributors: it copies a local checkout straight into a profile's `node_modules` and rewrites that profile's `package.json` bundles, bypassing the DSH plugin manager. End users should not use it — install with `dsh plugin add` or from the Discover tab instead.
 
 - Host runs in the DSH Host process; the Global TV player listens on its own loopback port so the guest webview may load it.
 - Client bundle is plain `window.__ModuleLoader__.load({...})` and only requires baseline modules (`react`).
