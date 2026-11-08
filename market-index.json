@@ -1,22 +1,42 @@
 {
   "format": 1,
-  "title": { "en": "DSH-TV", "zh": "DSH-TV" },
-  "description": { "en": "Right-sidebar short-video / TV panel for DeepSeek Harness.", "zh": "DeepSeek Harness 的右侧边栏短视频/电视面板。" },
+  "title": {
+    "en": "DSH-TV",
+    "zh": "DSH-TV"
+  },
+  "description": {
+    "en": "Right-sidebar short-video / TV panel for DeepSeek Harness.",
+    "zh": "DeepSeek Harness 的右侧边栏短视频/电视面板。"
+  },
   "metadata": {},
   "plugins": [
     {
       "name": "dsh-tv",
-      "title": { "en": "DSH-TV", "zh": "DSH-TV" },
-      "description": { "en": "Douyin / Short-drama / YouTube / Bilibili / Instagram / HackerTube + random Global TV in the right sidebar.", "zh": "右侧边栏刷抖音/短剧/YouTube/B站/Instagram/HackerTube，外加随机全球频道。" },
+      "title": {
+        "en": "DSH-TV",
+        "zh": "DSH-TV"
+      },
+      "description": {
+        "en": "Douyin / Short-drama / YouTube / Bilibili / Instagram / HackerTube + random Global TV in the right sidebar.",
+        "zh": "右侧边栏刷抖音/短剧/YouTube/B站/Instagram/HackerTube，外加随机全球频道。"
+      },
       "author": "MathewWuZJ",
       "homepage": "https://github.com/MathewWuZJ/dsh-tv#readme",
-      "repository": { "url": "https://github.com/MathewWuZJ/dsh-tv" },
+      "repository": {
+        "url": "https://github.com/MathewWuZJ/dsh-tv"
+      },
       "versions": [
         {
           "version": "0.1.0",
           "publishTimestamp": 1794130958,
-          "source": { "type": "git", "url": "https://github.com/MathewWuZJ/dsh-tv", "commit": "13ff2be2c4215a53c25d3a538f698d8f7b0c8419" },
-          "engines": { "dsh": ">=0.2.0 <0.3.0" }
+          "source": {
+            "type": "git",
+            "url": "https://github.com/MathewWuZJ/dsh-tv",
+            "commit": "0065b3e834eb21431f99f89165a3da4764421098"
+          },
+          "engines": {
+            "dsh": ">=0.2.0 <0.3.0"
+          }
         }
       ]
     }
