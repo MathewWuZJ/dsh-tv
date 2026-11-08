@@ -32,7 +32,7 @@
           "source": {
             "type": "git",
             "url": "https://github.com/MathewWuZJ/dsh-tv",
-            "commit": "0065b3e834eb21431f99f89165a3da4764421098"
+            "commit": "a3424eedafb342d371cf5584a1a12c447958df01"
           },
           "engines": {
             "dsh": ">=0.2.0 <0.3.0"
