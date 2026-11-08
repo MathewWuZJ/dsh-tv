@@ -1,0 +1,59 @@
+{
+  "name": "dsh-tv",
+  "version": "0.1.0",
+  "description": "DSH-TV — a right-sidebar short-video/TV panel for DeepSeek Harness (Douyin / Short-drama / YouTube / Bilibili / Instagram / HackerTube, plus a random global TV player). Desktop uses an Electron webview with a real browser engine.",
+  "license": "MIT",
+  "author": "MathewWuZJ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathewWuZJ/dsh-tv.git"
+  },
+  "homepage": "https://github.com/MathewWuZJ/dsh-tv#readme",
+  "bugs": {
+    "url": "https://github.com/MathewWuZJ/dsh-tv/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "sidebar",
+    "short-video",
+    "iptv"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "install.sh"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "slots",
+        "sidebarRight",
+        "sidebarRightTabs"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22.19.0",
+    "dsh": ">=0.2.0 <0.3.0"
+  }
+}

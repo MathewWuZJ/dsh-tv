@@ -1,0 +1,5 @@
+# Bundle patch: insert this plugin as a loader entry when the package is added
+# to the profile's dsh.profile.bundles list.
+- insert:
+    - id: dsh-tv
+      name: dsh-tv
