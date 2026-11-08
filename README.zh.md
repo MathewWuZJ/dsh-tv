@@ -40,16 +40,15 @@
 dsh plugin --profile desktop add github:MathewWuZJ/dsh-tv
 ```
 
-然后把 `dsh-tv` 加进 profile 的 `dsh.profile.bundles`（插件管理器的“启用”开关通常会做），重启 DSH。
-
-### 2）从本地目录安装
+如果你的 pnpm 不接受 `github:` 简写，等价的完整 Git 地址可用：
 
 ```sh
-cd dsh-tv
-./install.sh                 # 安装到当前 desktop profile
+dsh plugin --profile desktop add git+https://github.com/MathewWuZJ/dsh-tv.git
 ```
 
-### 3）作为插件市场索引安装
+安装后会自动启用该 bundle。完全退出并重启 DeepSeek Harness，对话头部右上角就会出现 `DSH-TV` 按钮；若没出现，到 **Plugins → Installed** 确认 `dsh-tv` 已启用。
+
+### 2）作为插件市场索引安装
 
 DSH 没有官方第三方市场，第三方通过**自定义插件索引**分发。本仓库内置 `market-index.json`（format 1）。在 DSH 里启用 **Plugins → Discover → Custom plugin indexes**，添加：
 
@@ -116,8 +115,10 @@ dsh-tv/
 ├── assets/icons/       # 内置的真实站点图标
 ├── assets/hls.min.js   # 全球频道用的 HLS 播放库
 ├── assets/readme/      # 截图
-└── install.sh          # 本地安装脚本
+└── install.sh          # 仅开发用的同步脚本，不是安装方式
 ```
+
+`install.sh` 是给**贡献者改代码时**用的开发脚本：它把本地仓库直接拷进某个 profile 的 `node_modules`，并手改该 profile 的 `package.json` bundles，绕过了 DSH 插件管理器。普通用户不要用它 —— 请用 `dsh plugin add` 或 Discover 安装。
 
 - Host 跑在 DSH Host 进程；全球频道播放器监听独立 loopback 端口，供 guest webview 加载。
 - Client bundle 是纯 `window.__ModuleLoader__.load({...})`，只依赖基线模块（`react`）。

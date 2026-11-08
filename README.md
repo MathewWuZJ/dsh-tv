@@ -40,16 +40,15 @@ A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) plug
 dsh plugin --profile desktop add github:MathewWuZJ/dsh-tv
 ```
 
-Then add `dsh-tv` to your profile's `dsh.profile.bundles` (the plugin manager's "Enable"/toggle usually does this), and restart DSH.
-
-### 2) From a local directory
+If your pnpm does not accept the `github:` shorthand, the equivalent Git URL works:
 
 ```sh
-cd dsh-tv
-./install.sh                 # installs into the active desktop profile
+dsh plugin --profile desktop add git+https://github.com/MathewWuZJ/dsh-tv.git
 ```
 
-### 3) As a plugin-market index entry
+Installation enables the bundle automatically. Fully quit and relaunch DeepSeek Harness, and the `DSH-TV` button appears in the chat header (top-right). If it does not, open **Plugins → Installed** and check that `dsh-tv` is enabled.
+
+### 2) As a plugin-market index entry
 
 DSH has no central third-party marketplace; third parties publish packages and **custom plugin indexes**. This repo ships `market-index.json` (format 1). In DSH enable **Plugins → Discover → Custom plugin indexes**, add:
 
@@ -115,8 +114,11 @@ dsh-tv/
 ├── lib/client.js      # client half: right-sidebar tab type, UI, settings, per-site webviews
 ├── assets/icons/       # bundled real site favicons
 ├── assets/hls.min.js   # bundled HLS player for Global TV
-└── install.sh          # local install helper
+├── assets/readme/      # README screenshots
+└── install.sh          # development-only sync helper, NOT an install method
 ```
+
+`install.sh` is a **development helper** for contributors: it copies a local checkout straight into a profile's `node_modules` and rewrites that profile's `package.json` bundles, bypassing the DSH plugin manager. End users should not use it — install with `dsh plugin add` or from the Discover tab instead.
 
 - Host runs in the DSH Host process; the Global TV player listens on its own loopback port so the guest webview may load it.
 - Client bundle is plain `window.__ModuleLoader__.load({...})` and only requires baseline modules (`react`).
